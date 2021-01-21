@@ -1,0 +1,86 @@
+<!-- ***********************************************
+     *            (2) Budgets Details Component            *
+     ***********************************************-->
+<div class="card flex-row scroll" *ngIf="display">
+  <div class="card-body  justify-content-center">
+    <button type="button" class="close" id="closeSide" aria-label="Close" (click)="setCloseSide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="container">
+      <button class="btn btn-primary mb-4"  (click)="openAccounts()">View Accounts</button>
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+
+          <!-- ** Displaying basic budget info [top-left-box] ** -->
+          <ul class="list-group mb-4" *ngIf="data">
+            <li class="list-group-item">
+              <label class="font-weight-bolder">Budget Name : </label>
+              <label class="mx-2">  {{data?.name}} </label>
+            </li>
+            <li class="list-group-item">
+              <label class="font-weight-bolder">Last Modified ON : </label>
+              <label class="mx-2">  {{data?.last_modified_on|date:'YYYY-MM-dd'}} </label>
+            </li>
+            <li class="list-group-item">
+              <label class="font-weight-bolder">First Month : </label>
+              <label class="mx-2">  {{data?.first_month}} </label>
+            </li>
+            <li class="list-group-item">
+              <label class="font-weight-bolder">Last Month : </label>
+              <label class="mx-2">  {{data?.last_month}} </label>
+            </li>
+            <li class="list-group-item" *ngFor="let item of data?.months">
+              <label class="font-weight-bolder"> Budgeted in {{item?.month|date:'MMM'}} : </label>
+              <label class="mx-2">  {{item?.budgeted|customCurrency:data?.currency_format}} </label>
+              <span class="d-block"></span>
+              <label class="font-weight-bolder "> Funds for {{item.month|date:'MMM'}} : </label>
+              <label class="mx-2">  {{item?.income|customCurrency:data?.currency_format}} </label>
+            </li>
+            <li class="list-group-item"
+                [ngClass]="{ 'list-group-item-danger':data?.months[0]?.to_be_budgeted<0,'list-group-item-success':data?.months[0]?.to_be_budgeted>0}">
+              <label class="font-weight-bolder"> To be Budgeted : </label>
+              <label class="mx-2">  {{data?.months[0]?.to_be_budgeted|customCurrency:data?.currency_format}} </label>
+            </li>
+          </ul>
+        </div>
+        <!-- ** Displaying budget payees [top-right-box] ** -->
+        <div class="col-md-6 col-sm-12 ">
+          <ul class="list-group scroll">
+            <li class="list-group-item" *ngFor="let item of data?.payees" (click)="currentSelectedPayee=item">
+              <label class="d-block mb-0">{{ item?.name}}</label>
+              <i class="bi bi-eye-fill mr-2"></i><small> click to view the payee transactions</small>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- ** Displaying budget categories ** -->
+      <div class="table-responsive">
+        <div class="accordion">
+          <div class="card" *ngFor="let groupItem of data?.category_groups; let i = index">
+            <div class="card-header" [attr.id]="'headingOne'+i">
+              <h2 class="mb-0">
+                <!-- Category title -->
+                <a class="text-dark btn-block text-left h5" type="button" data-toggle="collapse"
+                   [attr.data-target]="'#collapseOne'+i" aria-expanded="false" aria-controls="collapseOne"
+                   *ngIf="groupItem?.categories?.length>0">
+                  {{groupItem.name}}
+                </a>
+                <span class="text-dark btn-block text-left h5"
+                      *ngIf="groupItem.categories?.length===0">  {{groupItem?.name}}</span>
+              </h2>
+            </div>
+            <div [attr.id]="'collapseOne'+i" class="collapse" [class.show]="i==0" aria-labelledby="headingOne"
+                 *ngIf="groupItem.categories?.length>0">
+              <!-- displaying category info  -->
+              <div class="card-body">
+                <app-table [data]="groupItem?.categories" [schema]="categoriesTableSchema"></app-table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ** displaying payee transactions ** -->
+<app-payee-transactions [payee]="currentSelectedPayee" [data]="data" (onCallBack)="currentSelectedPayee = $event"></app-payee-transactions>

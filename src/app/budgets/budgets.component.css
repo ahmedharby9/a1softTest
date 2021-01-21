@@ -1,0 +1,112 @@
+/* ********************
+ * Budgets Component  *
+  ********************* */
+
+.bg {
+  height: 102px;
+  background-color: #DEDEDE;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.breadcrumb {
+  padding: 15px 0 0 2px !important;
+  background-color: transparent !important;
+}
+
+.breadcrumb .breadcrumb-item, .breadcrumb .breadcrumb-item a {
+  color: #8E44AD !important;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 15px;
+
+}
+
+.cost-title {
+  color: #34495E;
+  font-size: 30px;
+  letter-spacing: 0;
+  line-height: 35px;
+}
+
+/* ** starting table ** */
+.table {
+  padding: 15px;
+}
+
+.table thead tr {
+  color: #7F8C8D;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 15px;
+}
+
+.table thead tr th:last-child {
+  width: 50px !important;
+}
+
+
+.table tbody tr {
+  color: #7F8C8D;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: 15px;
+}
+
+.table tbody tr:not(:last-child) {
+  border-bottom: #DEDEDE 1px solid;
+}
+
+.table tbody tr:hover {
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgba(142, 68, 173, 0.05);
+}
+
+tr.active {
+  background-color: #8E44AD !important;
+}
+
+tr.active td h3, tr.active td i {
+  color: #FFFFFF;
+}
+
+.cost-td-user h3 {
+  display: inline-block;
+  color: #34495E;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 18px;
+  margin-left: 10px;
+}
+
+.cost-td-user img {
+  display: inline-block;
+  width: 55px;
+}
+
+/* ** table controls ** */
+.cost-td-btns {
+  vertical-align: middle;
+}
+
+.cost-td-btns .btn {
+  width: auto !important;
+  box-shadow: none !important;
+}
+
+.cost-td-btns .btn:not(:last-child) {
+  color: #8E44AD;
+  border: 1px solid #8E44AD !important;
+
+}
+
+.cost-td-btns .btn:not(:last-child):hover {
+  background-color: #8E44AD;
+  color: #FFFFFF;
+}
+
+.cost-td-btns .btn:nth-child(3) {
+  padding-left: 0 !important;
+  color: #8E44AD;
+}
+

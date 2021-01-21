@@ -1,0 +1,22 @@
+<!-- ***********************************************
+     *        (3) Budget Accounts Component        *
+     ***********************************************-->
+<div class="card flex-row scroll" *ngIf="display">
+  <div class="card-body  justify-content-center">
+    <button type="button" class="close" id="closeSidebar" aria-label="Close" (click)="setCloseSide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <div class="container">
+      <div class="table-responsive">
+        <!-- ** Add new Account Button ** -->
+        <button class="btn btn-primary mb-4" data-toggle="modal" data-target="#accountModal">New Account</button>
+        <!-- ** Accounts Table  ** -->
+        <app-table [data]="accounts" [schema]="tableSchema"
+                   [controls]="[{iconClass:'bi bi-cash', callBack:'this.onCallBack.emit(row)'}]"
+                   (onCallBack)="onBeforeCreateTrans($event)"></app-table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ** Create new transaction popup** -->
+<app-create-transaction [data]="selectedAccount" [payeeList]="data?.payees"></app-create-transaction>

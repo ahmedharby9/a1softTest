@@ -1,0 +1,29 @@
+nav {
+  height: 70px;
+  background-color: #FFFFFF;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.navbar-light .navbar-nav .nav-link{
+  color: #34495E;
+  font-size: 15px;
+  letter-spacing: 0;
+  line-height: 18px;
+  text-transform: uppercase;
+  margin-right: 22px;
+}
+.navbar-light .navbar-nav .btn {
+  color: #FFFFFF!important;
+  padding: 9px 25px!important;
+}
+@media screen and (max-width: 992px){
+  .navbar-collapse.collapse.show{
+    background: #ffffff;
+    margin-top: .75em;
+    border-top: 1px solid #dedede;
+    padding: 0 0 0.5em 1.5em;
+    z-index: 999;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  }
+}
+

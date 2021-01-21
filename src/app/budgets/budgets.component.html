@@ -1,0 +1,66 @@
+<!-- ***********************************************
+     *            (1) Budgets Component            *
+     ***********************************************-->
+<div class="bg">
+  <div class="container-fluid">
+    <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Budgets</li>
+      </ol>
+      <div class="d-flex justify-content-between">
+        <h1 class="cost-title">Users List</h1>
+      </div>
+
+    </nav>
+  </div>
+</div>
+<!-- ** Displaying table with scrolling loader ** -->
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div class="card o-hidden  my-5">
+        <div class="card-body p-0 d-block d-lg-flex ">
+          <!-- Start budgets table -->
+          <table class="table table-borderless m-lg-3">
+            <thead>
+            <tr>
+              <th scope="col">My Budgets</th>
+              <th scope="col">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of budgets" [class.active]="currentSelectedBudget?.id == item?.id && displayBudgetDetails">
+              <td class="cost-td-user" (click)="onSelectBudget(item)"
+                  [attr.colSpan]="(currentSelectedBudget?.id == item?.id && displayBudgetDetails)?2:0">
+                <h3>{{item?.name}}</h3>
+                <button class="btn w-auto shadow-none float-right mt-2"
+                        *ngIf="currentSelectedBudget?.id == item?.id && displayBudgetDetails">
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+                <small class="m-auto d-block">Last used {{item?.last_modified_on | date:'M/d/yy, h:mm a'}}</small>
+              </td>
+              <td class="text-right cost-td-btns" *ngIf="!displayBudgetDetails || currentSelectedBudget?.id != item?.id">
+                <button class="btn" id="openBudget" (click)="onSelectBudget(item)">
+                  <i class="bi bi-chevron-right"></i>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <!-- end table -->
+
+          <!-- ** View right aside bars ** -->
+          <app-budget-details [display]="displayBudgetDetails" [data]="currentSelectedBudget"
+                              (onClose)="displayBudgetDetails = $event"
+                              (onOpenAccounts)="displayBudgetAccounts = $event; displayBudgetDetails=false"></app-budget-details>
+          <!-- Budget accounts component -->
+          <app-budget-accounts [data]="currentSelectedBudget" [display]="displayBudgetAccounts"
+                               (onClose)="displayBudgetAccounts = $event"></app-budget-accounts>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ** Create account popup ** -->
+<app-create-account [budgetId]="currentSelectedBudget?.id" (onCallBack)="onAfterAddAccount()"></app-create-account>

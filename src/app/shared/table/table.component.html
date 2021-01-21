@@ -1,0 +1,44 @@
+<!-- ***********************************************
+     *               (S) Table Component           *
+     ***********************************************-->
+<table class="table table-bordered table-striped table-responsive " *ngIf="data?.length>0">
+  <thead>
+  <tr>
+    <!-- table columns -->
+    <th *ngIf="controls?.length>0" >Actions</th>
+    <th scope="col" style="min-width:12rem" *ngFor="let col of schema ">{{col?.name}}</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- table rows -->
+  <tr *ngFor="let item of data">
+    <!-- check if schema have buttons and set control config -->
+    <td *ngIf="controls?.length>0">
+      <span *ngFor="let control of controls">
+        <button  class="btn btn-outline-primary btn-sm" (click)="localEval(control?.callBack,item)">
+          <i [class]="control?.iconClass" ></i>{{control?.name}}
+        </button>
+      </span>
+    </td>
+    <td *ngFor="let sub of schema ">
+      <!-- bind data as date -->
+      <label *ngIf="sub?.format=='date'">
+        {{item[sub.key]|date:'short'}}
+      </label>
+      <!-- bind data as currency -->
+      <label *ngIf="sub.format=='currency'">
+        {{item[sub?.key]|customCurrency:sub?.currencyFormat}}
+      </label>
+      <!-- bind data as the same -->
+      <label *ngIf="!sub.format&&!sub.flag">
+        {{item[sub?.key]}}
+      </label>
+      <!-- bind data as flag [true or false] -->
+      <label *ngIf="sub.flag&&!sub.format">
+        {{item[sub?.key] ? sub?.flag?.TRUE : sub?.flag?.FALSE}}
+      </label>
+    </td>
+
+  </tr>
+  </tbody>
+</table>

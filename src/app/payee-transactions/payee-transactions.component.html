@@ -1,0 +1,31 @@
+<!-- *********************************************************
+     *        (4) Create Payee Transactions Component         *
+     *********************************************************-->
+<div class="modal fade " id="payeeModal" tabindex="-1" aria-labelledby="payeeModalLabel" aria-hidden="true"
+     bsModal #modalRef="bs-modal" (onHide)="onHideModal()">
+  <div class="modal-dialog modal-dialog-centered modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- Payee Name -->
+        <h5 class="modal-title" id="exampleModalLabel">{{payee?.name}} transactions</h5>
+        <button type="button" class="close" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <!--Start Modal Body -->
+      <div class="modal-body">
+        <div class="container">
+          <div class="table-responsive">
+            <p class="h4 p-5" *ngIf="transactionsList?.length<1">there is no any transaction for payee </p>
+            <!-- Transactions table -->
+            <app-table [data]="transactionsList" [schema]="tableSchema"></app-table>
+          </div>
+        </div>
+      </div>
+      <!--End Modal Body -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary rounded-pill " (click)="modalRef.hide()">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>

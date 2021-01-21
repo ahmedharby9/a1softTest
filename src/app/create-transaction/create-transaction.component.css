@@ -1,0 +1,11 @@
+.btn-outline-primary{
+  width: auto!important;
+  box-shadow: none!important;
+  border: 1px solid #ced4da!important;
+}
+.btn-primary{
+  width: auto!important;
+  box-shadow: none!important;
+  border: 1px solid #ced4da!important;
+  text-transform: capitalize!important;
+}

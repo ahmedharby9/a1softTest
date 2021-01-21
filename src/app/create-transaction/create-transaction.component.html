@@ -1,0 +1,101 @@
+<!-- ***********************************************
+     *        (4) Create Transaction Component         *
+     ***********************************************-->
+<div class="modal fade" id="transactionModal" tabindex="-1" aria-labelledby="transactionModalLabel" aria-hidden="true"
+     bsModal #modalRef="bs-modal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!--Start Modal Body -->
+      <div class="modal-body text-center">
+        <form class="text-left" [formGroup]="transactionForm">
+          <div class="form-group">
+            <label for="dateControl">Date</label>
+            <input type="text"
+                   placeholder="Datepicker"
+                   class="form-control"
+                   bsDatepicker name="date" id="dateControl" formControlName="date">
+          </div>
+          <!--** Payee list -->
+          <div class="form-group">
+            <label for="payee"> Payee</label>
+            <select class="form-control" autofocus="" id="payee" name="payee" formControlName="payee">
+              <option value="">Select an payee Type...</option>
+              <option *ngFor="let item of payeeList" [disabled]="!item.transfer_account_id"
+                      [ngValue]="item">{{item.name}}</option>
+            </select>
+          </div>
+          <!--** ./end list -->
+          <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" min="0" name="amount" id="amount" formControlName="amount" class="form-control"
+                   required
+                   placeholder="Amount..."/>
+          </div>
+          <div class="form-group">
+            <label for="memo">Memo</label>
+            <input type="text" name="amount" id="memo" formControlName="memo" class="form-control"
+                   placeholder="Memo..."/>
+          </div>
+          <!--** Payee radio buttons -->
+          <div class="form-group">
+            <label class="d-block">Flag</label>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="flag_color_red" class="custom-control-input"
+                     formControlName="flagColor" value="red">
+              <label class="custom-control-label" for="flag_color_red">Red</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="flag_color_orange" class="custom-control-input"
+                     formControlName="flagColor" value="orange">
+              <label class="custom-control-label" for="flag_color_orange">Orange</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="flag_color_yellow" class="custom-control-input"
+                     formControlName="flagColor" value="yellow">
+              <label class="custom-control-label" for="flag_color_yellow">Yellow</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="flag_color_green" class="custom-control-input"
+                     formControlName="flagColor" value="green">
+              <label class="custom-control-label" for="flag_color_green">Green</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="flag_color_blue" class="custom-control-input"
+                     formControlName="flagColor" value="blue">
+              <label class="custom-control-label" for="flag_color_blue">blue</label>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <input type="radio" id="flag_color_purple" class="custom-control-input"
+                     formControlName="flagColor" value="purple">
+              <label class="custom-control-label" for="flag_color_purple">Purple</label>
+            </div>
+          </div>
+          <!--** ./end buttons -->
+          <div class="custom-control custom-switch custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="cleared" name="cleared" formControlName="cleared">
+            <label class="custom-control-label" for="cleared">Cleared</label>
+          </div>
+          <div class="custom-control custom-switch custom-control-inline">
+            <input type="checkbox" class="custom-control-input" id="approved" name="approved"
+                   formControlName="approved">
+            <label class="custom-control-label" for="approved">Approved</label>
+          </div>
+        </form>
+      </div>
+      <!--End Modal Body -->
+      <div class="modal-footer">
+        <!--Start Model controls-->
+        <button type="button" class="btn btn-outline-primary rounded-pill " (click)="modalRef.hide()">Cancel
+        </button>
+        <button type="button" class="btn btn-primary px-4" [disabled]="transactionForm.invalid"
+                (click)="onSubmitCreate(true)">
+          Save
+        </button>
+        <button type="button" class="btn btn-primary " [disabled]="transactionForm.invalid" (click)="onSubmitCreate()">
+          Save and close
+        </button>
+      </div>
+      <!--End Model controls -->
+    </div>
+  </div>
+</div>

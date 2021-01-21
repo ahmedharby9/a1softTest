@@ -1,0 +1,28 @@
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center ">
+
+    <div class="col-xl-10 col-lg-12 col-md-9">
+
+      <div class="card o-hidden  my-5">
+        <div class="card-body p-0">
+          <!-- Nested Row within Card Body -->
+          <div class="row">
+            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+            <div class="col-lg-6 ">
+              <div class="p-3 align-items-center">
+                <div class="text-left cost-intro">
+                  <h1>Welcome Back!</h1>
+                  <p>Please login to access your <span style="color: #8E44AD">YNAB</span> Dashboard</p>
+                </div>
+                <div class="d-flex">
+                  <button class="btn btn-primary" type="submit" [disabled]="disableBtn" (click)="onSubmit()">Login</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

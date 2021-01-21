@@ -1,0 +1,36 @@
+.card {
+  border-radius: 0 10px 10px 0 !important;
+  box-shadow: -2px 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+.table thead th {
+  text-transform: uppercase;
+}
+
+/* ** category lit ** */
+.accordion .card {
+  min-height: auto !important;
+  border-radius: 0 !important;
+  background-color: #FFFFFF;
+  box-shadow: none !important;
+}
+
+.list-group.scroll {
+  max-height: 29rem
+}
+
+.list-group.scroll .list-group-item {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 1200px) {
+  .card {
+    max-width: 50rem
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .card .card-body {
+    max-width: 40rem;
+  }
+}

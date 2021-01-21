@@ -1,0 +1,50 @@
+<!-- ***********************************************
+     *        (4) Create account Component         *
+     ***********************************************-->
+<div class="modal fade" tabindex="-1" id="accountModal" aria-labelledby="accountModalLabel" aria-hidden="true" >
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <!--Start Modal Body -->
+      <div class="modal-body text-center">
+        <form class="text-left" [formGroup]="accountForm">
+          <div class="form-group">
+            <label for="type">What type of account are you adding?</label>
+            <select class="form-control" autofocus="" id="type" name="type" formControlName="type">
+              <option value="">Select an Account Type...</option>
+              <optgroup label="budget">
+                <option value="checking">Checking</option>
+                <option value="savings">Savings</option>
+                <option value="cash">Cash</option>
+                <option value="creditCard">Credit Card</option>
+                <option value="lineOfCredit">Line of Credit</option>
+              </optgroup>
+              <optgroup label="Tracking">
+                <option value="otherAsset">Asset (e.g. Investment)</option>
+                <option value="otherLiability">Liability (e.g. Mortgage)</option>
+              </optgroup>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Give it a nickname</label>
+            <input type="text" name="name" id="name" formControlName="name" class="form-control" required
+                   placeholder="Name..."/>
+          </div>
+          <div class="form-group">
+            <label for="balanceTitle">What is your current account balance?</label>
+            <input type="number" min="0" name="balanceTitle" id="balanceTitle" formControlName="balance" Name="balance"
+                   class="form-control"
+                   placeholder="balance..."/>
+          </div>
+        </form>
+      </div>
+      <!--End Modal Body -->
+      <div class="modal-footer">
+        <!--Start Model controls-->
+        <button type="button" class="btn btn-outline-primary rounded-pill " #closeButton data-dismiss="modal">Cancel
+        </button>
+        <button type="button" class="btn btn-primary " [disabled]="accountForm.invalid" (click)="onSubmitCreate()">Save</button>
+        <!--End Model controls-->
+      </div>
+    </div>
+  </div>
+</div>

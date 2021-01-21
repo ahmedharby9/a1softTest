@@ -1,0 +1,28 @@
+.btn {
+  width: auto !important;
+  box-shadow: none !important;
+}
+
+.btn:not(:last-child) {
+  color: #8E44AD;
+  border: 1px solid #8E44AD !important;
+
+}
+
+.btn:not(:last-child):hover {
+  background-color: #8E44AD;
+  color: #FFFFFF;
+}
+
+.btn:nth-child(3) {
+  padding-left: 0 !important;
+  color: #8E44AD;
+}
+
+.table-bordered {
+  border: none !important;
+}
+
+.table thead th{
+  text-transform: uppercase;
+}

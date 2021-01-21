@@ -1,0 +1,9 @@
+{
+  "/api": {
+    "target": "https://api.youneedabudget.com/v1",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    }
+  }
+}
